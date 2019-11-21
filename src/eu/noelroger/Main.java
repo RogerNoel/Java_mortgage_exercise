@@ -28,5 +28,6 @@ public class Main {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String formattedRefund = formatter.format(refund);
         System.out.println("Le montant de la mensualité s'élèvera à " + formattedRefund);
+        scanner.close();
     }
 }
