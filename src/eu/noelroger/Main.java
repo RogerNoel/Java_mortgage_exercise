@@ -8,7 +8,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         //----
+        // Variables
         long principal = 0;
+        float annualRate = 0;
+        int numberOfPayments = 0;
+        //----------
         while (true) {
             System.out.print("Entrez le montant à emprunter, entre 1000 et 1 million: ");
             principal = scanner.nextLong();
@@ -17,19 +21,16 @@ public class Main {
             System.out.print("ATTENTION: le montant à emprunter doit se situer entre 1000 et 1 million: ");
         }
         System.out.println("Vous voulez emprunter " + principal + " euros.");
-        float annualRate = 0;
         do {
             System.out.print("Entrez le taux ANNUEL (entre 0 et 13) en %: ");
             annualRate = scanner.nextFloat();
         } while (annualRate > 13);
         System.out.println("Le taux annuel est de " + annualRate + "%.");
         System.out.println("(Taux mensuel: " + (annualRate/100/12) + ".)");
-        int numberOfPayments = 0;
-
         while(true) {
             System.out.print("Entrez le nombre de mensualités, entre 1 et 60 inclus: ");
             numberOfPayments = scanner.nextInt();
-            if (numberOfPayments < 60 && numberOfPayments > 0)
+            if (numberOfPayments <= 60 && numberOfPayments > 0)
                 break;
             System.out.print("ATTENTION: le nombre de mensualités doit se situer entre 1 et 60 inclus: ");
         }
@@ -43,6 +44,7 @@ public class Main {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String formattedRefund = formatter.format(refund);
         System.out.println("Le montant de la mensualité s'élèvera à " + formattedRefund);
+        System.out.println("Le remboursement total s'élèvera à " + (formatter.format(numberOfPayments * refund)));
         scanner.close();
     }
 }
