@@ -8,16 +8,24 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         //----
-        System.out.print("Entrez le montant à emprunter: ");
-        int principal = scanner.nextInt();
+        int principal = 0;
+        while (principal < 1000 || principal > 1000000) {
+            System.out.print("Entrez le montant à emprunter, entre 1000 et 1 million: ");
+            principal = scanner.nextInt();
+        }
         System.out.println("Vous voulez emprunter " + principal + " euros.");
-        System.out.print("Entrez le taux ANNUEL en %: ");
-        float annualRate = scanner.nextFloat();
-//        System.out.println(annualRate);
+        float annualRate = 0;
+        do {
+            System.out.print("Entrez le taux ANNUEL (entre 0 et 13) en %: ");
+            annualRate = scanner.nextFloat();
+        } while (annualRate > 13);
         System.out.println("Le taux annuel est de " + annualRate + "%.");
-        System.out.println("Le taux mensuel sera de " + (annualRate/100/12) + ".");
-        System.out.print("Entrez le nombre de mensualités: ");
-        int numberOfPayments = scanner.nextInt();
+        System.out.println("(Taux mensuel: " + (annualRate/100/12) + ".)");
+        int numberOfPayments = 0;
+        while (numberOfPayments == 0 || numberOfPayments > 30) {
+            System.out.print("Entrez le nombre de mensualités, entre 1 et 30 inclus: ");
+            numberOfPayments = scanner.nextInt();
+        }
         System.out.println("Vous avez choisi de payer en " + numberOfPayments + " mois.");
         // calcul du numérateur
         double monthlyRate = (annualRate/100/12);
