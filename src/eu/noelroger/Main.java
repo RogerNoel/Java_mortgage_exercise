@@ -11,10 +11,6 @@ public class Main {
         long principal = 0;
         float annualRate = 0;
         int numberOfPayments = 0;
-        double monthlyRate = 0;
-        double refund = 0;
-        double denominator = 0;
-        double numerator = 0;
         //----------
         while (true) {
             System.out.print("Entrez le montant à emprunter, entre 1000 et 1 million: ");
@@ -28,18 +24,13 @@ public class Main {
             annualRate = scanner.nextFloat();
         } while (annualRate > 13);
         while(true) {
-            System.out.print("Entrez le nombre de mensualités, entre 1 et 60 inclus: ");
+            System.out.print("Entrez le nombre de mensualités, entre 1 et 360 inclus: ");
             numberOfPayments = scanner.nextInt();
-            if (numberOfPayments <= 60 && numberOfPayments > 0)
+            if (numberOfPayments <= 360 && numberOfPayments > 0)
                 break;
             System.out.print("ATTENTION: le nombre de mensualités doit se situer entre 1 et 60 inclus: ");
         }
-        // calcul du numérateur
-        monthlyRate = calculateMonthlyRate(annualRate);
-        numerator = calculateNumerator(monthlyRate, numberOfPayments);
-        // calcul du dénominateur
-        denominator = calculateDenominator(monthlyRate, numberOfPayments);
-        refund = calculateRefund(principal, denominator, numerator);
+        double refund = calculateRefund (principal, annualRate, numberOfPayments);
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String formattedRefund = formatter.format(refund);
         System.out.println("Le montant de la mensualité s'élèvera à " + formattedRefund);
@@ -47,16 +38,11 @@ public class Main {
         scanner.close();
     }
 
-    public static double calculateMonthlyRate(Float annualRate) {
-        return annualRate/100/12;
-    }
-    public static double calculateNumerator(Double monthlyRate, Integer numberOfPayments) {
-        return (Math.pow((1+monthlyRate), numberOfPayments))*monthlyRate;
-    }
-    public static double calculateDenominator(Double monthlyRate, Integer numberOfPayments) {
-        return (Math.pow((1+monthlyRate), numberOfPayments))-1;
-    }
-    public static double calculateRefund(Long principal, Double denominator, Double numerator) {
-        return principal*(numerator/denominator);
+    public static double calculateRefund (Long principal, Float annualRate, Integer numberOfPayments){
+        double monthlyRate = annualRate/100/12;
+        double numerator = (Math.pow((1+monthlyRate), numberOfPayments))*monthlyRate;
+        double denominator = (Math.pow((1+monthlyRate), numberOfPayments))-1;
+        double refund = principal*(numerator/denominator);
+        return refund;
     }
 }
