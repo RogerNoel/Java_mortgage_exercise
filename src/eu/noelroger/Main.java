@@ -36,15 +36,28 @@ public class Main {
         }
         System.out.println("Vous avez choisi de payer en " + numberOfPayments + " mensualités.");
         // calcul du numérateur
-        double monthlyRate = (annualRate/100/12);
-        double numerator = (Math.pow((1+monthlyRate), numberOfPayments))*monthlyRate;
+        double monthlyRate = calculateMonthlyRate(annualRate);
+        double numerator = calculateNumerator(monthlyRate, numberOfPayments);
         // calcul du dénominateur
-        double denominator = (Math.pow((1+monthlyRate), numberOfPayments))-1;
-        double refund = principal*(numerator/denominator);
+        double denominator = calculateDenominator(monthlyRate, numberOfPayments);
+        double refund = calculateRefund(principal, denominator, numerator);
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String formattedRefund = formatter.format(refund);
         System.out.println("Le montant de la mensualité s'élèvera à " + formattedRefund);
         System.out.println("Le remboursement total s'élèvera à " + (formatter.format(numberOfPayments * refund)));
         scanner.close();
+    }
+
+    public static double calculateMonthlyRate(Float annualRate) {
+        return annualRate/100/12;
+    }
+    public static double calculateNumerator(Double monthlyRate, Integer numberOfPayments) {
+        return (Math.pow((1+monthlyRate), numberOfPayments))*monthlyRate;
+    }
+    public static double calculateDenominator(Double monthlyRate, Integer numberOfPayments) {
+        return (Math.pow((1+monthlyRate), numberOfPayments))-1;
+    }
+    public static double calculateRefund(Long principal, Double denominator, Double numerator) {
+        return principal*(numerator/denominator);
     }
 }
