@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97ac238f-ab97-4cee-9b84-c6211ba2fcf2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/mortgage/eu/noelroger/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mortgage/eu/noelroger/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/eu/noelroger/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eu/noelroger/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,6 +62,16 @@
       <updated>1573825952323</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
